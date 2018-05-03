@@ -3,14 +3,14 @@
 
 	if (!isset($_SESSION['username'])) {
 		$_SESSION['msg'] = "You must log in first";
-		header('location: ../login.php');
+		header('location: ../../login.php');
 	}
 
 	if (isset($_GET['logout'])) {
 		session_destroy();
 		unset($_SESSION['username']);
 		unset($_SESSION['type']);
-		header("location: ../login.php");
+		header("location: ../../login.php");
 	}
 
 ?>
@@ -19,10 +19,10 @@
 <html>
 	<head>
 			<title>Admin Dashboard</title>
-			<link rel="stylesheet" type="text/css" href="style.css">
+			<link rel="stylesheet" type="text/css" href="../style.css">
+			<link rel="stylesheet" type="text/css" href="../form.css">
 		</head>
-		<body background="eduxa4.jpg">
-		
+		<body>
 
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -36,21 +36,21 @@
 					<ul class="sidebar-nav">
 						<li class="sidebar-brand">
 							<a href="#">
-								
+								Eduxa SMS
 							</a>
 						</li>
 						<li>
-							<a href="">Dashboard</a>
+							<a href="index.php">Dashboard</a>
 						</li>
 								
 						<li><a href="">New</a>
 						  <ul class="submenu">
-						  <li><a href="">Admin</a></li>
-							<li><a href="./new_student">Student</a></li>
-							<li><a href="./new_teacher">Teacher</a></li>
+						  <li><a href="../index.php">Admin</a></li>
+							<li><a href="../new_student">Student</a></li>
+							<li><a href="../new_teacher">Teacher</a></li>
 							<li><a href="">Parent</a></li>
-							<li><a href="add_subject">Subject</a></li>
-							<li><a href="add_class">Class</a></li>
+							<li><a href="">Subject</a></li>
+							<li><a href="../add_class">Class</a></li>
 						  </ul>
 						</li>
 							
@@ -76,21 +76,72 @@
 					</ul>
 				</div>
 				<!-- /#sidebar-wrapper -->
+				
+				
 
 				<!-- Page Content -->
 				<div id="page-content-wrapper">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-lg-12">
-								<br>
-								<br>
+								<h1>Add Subject</h1>
 								<p></p>
 								<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
 							</div>
 						</div>
 					</div>
 				</div>
+				
+				
+				
+				
+
+				<form class="Form" method="post" action="add_subject.php">
+
+				<p id="subhead">New Subject:</p>
+
+					
+					<div class="Form-fields" >
+						<div>
+							<label>Subject:
+								<input id="long" type="text" name="subjectname" required></label>
+						</div>
+						
+						<div>
+							<label>Grade:
+								<input id="long" type="text" name="grade" required></label>
+						</div>
+
+						<div>
+							<label>Teacher In Charge:
+							
+							</div>								
+				
+						<?php
+						mysql_connect('localhost', 'root', '');
+						mysql_select_db('eduxa');
+
+						$sql = "SELECT name FROM teacher";
+						$result = mysql_query($sql);
+
+						echo "<select name='teacherincharge'>";
+						while ($row = mysql_fetch_array($result)) {
+							echo "<option value='" . $row['name'] ."'>" . $row['name'] ."</option>";
+						}
+						echo "</select>";
+						?>
+						
+							
+
+						<div>
+							<button type="submit"  name="reg">Save</button>
+							</div>
+						
+					</div>
+
+				</form>
 				<!-- /#page-content-wrapper -->
+			
 
 			</div>
 			<!-- /#wrapper -->

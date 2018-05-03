@@ -1,10 +1,10 @@
-/*!
- * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
+body{
+	margin: 0;
+	padding: 0;
+	background: url(img/eduxa4.jpg);
+	background-size: cover;
+}
 
-/* Toggle Styles */
 
 #wrapper {
     padding-left: 0;
@@ -123,3 +123,10 @@
         margin-right: 0;
     }
 }
+
+html {
+  height: 100%;
+}
+
+
+

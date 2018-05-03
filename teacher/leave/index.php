@@ -3,14 +3,14 @@
 
 	if (!isset($_SESSION['username'])) {
 		$_SESSION['msg'] = "You must log in first";
-		header('location: ../login.php');
+		header('../../../login.php');
 	}
 
 	if (isset($_GET['logout'])) {
 		session_destroy();
 		unset($_SESSION['username']);
 		unset($_SESSION['type']);
-		header("location: ../login.php");
+		header("../../../login.php");
 	}
 
 ?>
@@ -18,8 +18,9 @@
 
 <html>
 	<head>
-			<title>Teacher Dashboard</title>
-			<link rel="stylesheet" type="text/css" href="style.css">
+			<title>Admin Dashboard</title>
+			<link rel="stylesheet" type="text/css" href="../style.css">
+			<link rel="stylesheet" type="text/css" href="../form.css">
 		</head>
 		<body>
 
@@ -37,9 +38,6 @@
 							<a href="#">
 								Eduxa SMS
 							</a>
-						</li>
-						<li>
-							<a href="index.php">Dashboard</a>
 						</li>
 								
 						<li><a href="">Students</a>
@@ -69,30 +67,90 @@
 						  <ul class="submenu">
 							<li><a href="">Personal Info</a></li>
 							<li><a href="">Personal Records</a></li>
-							<li><a href="leave">Apply leave</a></li>
+							<li><a href="">Apply leave</a></li>
 							<li><a href="">Salary info</a></li>
 						  </ul>
 						</li>
-						
+						<li>
 							<p> <a href="index.php?logout='1'" style="color: red;">Logout</a> </p>	
 						</li>
 					</ul>
 				</div>
 				<!-- /#sidebar-wrapper -->
+				
+				
 
 				<!-- Page Content -->
 				<div id="page-content-wrapper">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-lg-12">
-								<h1>Dashboard</h1>
+								<h1>Apply Leave</h1>
 								<p></p>
 								<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
 							</div>
 						</div>
 					</div>
 				</div>
+				
+				
+				
+				<form method="post" class="Form" action="appLeave.php">
+				
+				<p id="subhead">Apply Leave:</p>
+
+					
+					<div class="Form-fields" >
+					
+				<div>
+					<label>Name in full:
+						
+				</div>
+				
+				<?php
+						mysql_connect('localhost', 'root', '');
+						mysql_select_db('eduxa');
+
+						$sql = "SELECT name FROM teacher";
+						$result = mysql_query($sql);
+
+						echo "<select name='name'>";
+						while ($row = mysql_fetch_array($result)) {
+							echo "<option value='" . $row['subjectname'] ."'>" . $row['subjectname']."</option>";
+						}
+						echo "</select>";
+						?>
+
+				<div>
+					<label>Service No:
+						<input type="number" id = "long" name="number" required></label>
+				</div>
+
+				<div>
+					<label>Duration(No of days):
+					<input type="number" id = "long" required></label>
+				</div>	
+
+				<div>
+					<label>From:
+						<input type="Date"  required></label>
+					<label>To:
+						<input type="Date"  required></label>
+				</div>
+
+				<div>
+					<label>Reason:
+						<input type="text" id = "long" required></label>
+				</div>
+
+			<button>Apply</button>
+			</div>
+
+			</form>
+
+				
 				<!-- /#page-content-wrapper -->
+			
 
 			</div>
 			<!-- /#wrapper -->

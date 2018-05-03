@@ -3,23 +3,24 @@
 
 	if (!isset($_SESSION['username'])) {
 		$_SESSION['msg'] = "You must log in first";
-		header('location: ../login.php');
+		header('../../../login.php');
 	}
 
 	if (isset($_GET['logout'])) {
 		session_destroy();
 		unset($_SESSION['username']);
 		unset($_SESSION['type']);
-		header("location: ../login.php");
+		header("../../../login.php");
 	}
 
 ?>
-<!DOCTYPE html>
+
 
 <html>
 	<head>
-			<title>Teacher Dashboard</title>
-			<link rel="stylesheet" type="text/css" href="style.css">
+			<title>Admin Dashboard</title>
+			<link rel="stylesheet" type="text/css" href="../../style.css">
+			<link rel="stylesheet" type="text/css" href="../../form.css">
 		</head>
 		<body>
 
@@ -38,8 +39,6 @@
 								Eduxa SMS
 							</a>
 						</li>
-						<li>
-							<a href="index.php">Dashboard</a>
 						</li>
 								
 						<li><a href="">Students</a>
@@ -69,30 +68,86 @@
 						  <ul class="submenu">
 							<li><a href="">Personal Info</a></li>
 							<li><a href="">Personal Records</a></li>
-							<li><a href="leave">Apply leave</a></li>
+							<li><a href="">Apply leave</a></li>
 							<li><a href="">Salary info</a></li>
 						  </ul>
 						</li>
-						
+						<li>
 							<p> <a href="index.php?logout='1'" style="color: red;">Logout</a> </p>	
 						</li>
 					</ul>
 				</div>
 				<!-- /#sidebar-wrapper -->
+				
+				
 
 				<!-- Page Content -->
 				<div id="page-content-wrapper">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-lg-12">
-								<h1>Dashboard</h1>
+								<h1>Add Results</h1>
 								<p></p>
 								<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
 							</div>
 						</div>
 					</div>
 				</div>
+				
+				
+				
+				
+
+				<form class="Form" method="post" action="add_results.php">
+
+				<p id="subhead">New Results:</p>
+
+					
+					<div class="Form-fields" >
+						<div>
+							<label>Student username:
+								<input id="long" type="text" name="username" required></label>
+						</div>
+
+						<div>
+							<label>Subject:
+							
+							</div>								
+				
+						<?php
+						mysql_connect('localhost', 'root', '');
+						mysql_select_db('eduxa');
+
+						$sql = "SELECT subjectname FROM subjects";
+						$result = mysql_query($sql);
+
+						echo "<select name='subjectname'>";
+						while ($row = mysql_fetch_array($result)) {
+							echo "<option value='" . $row['subjectname'] ."'>" . $row['subjectname']."</option>";
+						}
+						echo "</select>";
+						?>
+						
+											
+						
+						
+
+						<div>
+							<label>Mark:
+								<input id="long" type="text" name="mark" required></label>
+						</div>
+
+						
+
+						<div>
+							<button type="submit"  name="reg">Save</button>
+							</div>
+						
+					</div>
+
+				</form>
 				<!-- /#page-content-wrapper -->
+			
 
 			</div>
 			<!-- /#wrapper -->

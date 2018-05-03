@@ -4,16 +4,16 @@
 }
 body {
 	font-size: 120%;
-	background: #F8F8FF;
+	background: #4A142B;
 }
 
 .header {
 	width: 30%;
 	margin: 50px auto 0px;
 	color: white;
-	background: #5F9EA0;
+	background: #d1bec6;
 	text-align: center;
-	border: 1px solid #B0C4DE;
+	border: 1px solid #4A142B;
 	border-bottom: none;
 	border-radius: 10px 10px 0px 0px;
 	padding: 20px;
@@ -22,7 +22,7 @@ form, .content {
 	width: 30%;
 	margin: 0px auto;
 	padding: 20px;
-	border: 1px solid #B0C4DE;
+	border: 1px solid #d1bec6;
 	background: white;
 	border-radius: 0px 0px 10px 10px;
 }
@@ -47,7 +47,7 @@ form, .content {
 	padding: 10px;
 	font-size: 15px;
 	color: white;
-	background: #5F9EA0;
+	background: #4A142B;
 	border: none;
 	border-radius: 5px;
 }
